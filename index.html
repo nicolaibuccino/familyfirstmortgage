@@ -40,6 +40,18 @@ a{color:#023f80}a:hover{color:#19537d}
   .bigno{display:none !important}
 }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1586355699820608');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1586355699820608&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div style="font-family: Poppins, 'Segoe UI', Helvetica, sans-serif; color: #343a40; background: #ffffff; width: 100%; min-height: 100px; overflow: hidden">
@@ -282,5 +294,17 @@ a{color:#023f80}a:hover{color:#19537d}
 </div>
 
 </div>
+<script>
+// Meta: track "Book a call" clicks and pass fbclid/UTMs on to the Bonzo form
+(function(){
+  var q = window.location.search;
+  document.querySelectorAll('a[href*="getbonzo.com"]').forEach(function(a){
+    if (q) { a.href += (a.href.indexOf('?') > -1 ? '&' : '?') + q.slice(1); }
+    a.addEventListener('click', function(){
+      if (window.fbq) { fbq('track', 'Contact', {content_name: 'Book a call'}); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
