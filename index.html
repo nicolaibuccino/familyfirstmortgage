@@ -300,8 +300,14 @@ fbq('track', 'PageView');
   var q = window.location.search;
   document.querySelectorAll('a[href*="getbonzo.com"]').forEach(function(a){
     if (q) { a.href += (a.href.indexOf('?') > -1 ? '&' : '?') + q.slice(1); }
-    a.addEventListener('click', function(){
-      if (window.fbq) { fbq('track', 'Contact', {content_name: 'Book a call'}); }
+    a.addEventListener('click', function(e){
+      if (!window.fbq) return;
+      fbq('track', 'Contact', {content_name: 'Book a call'});
+      // Give the Contact event time to send before leaving the page
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+      e.preventDefault();
+      var url = a.href;
+      setTimeout(function(){ window.location.href = url; }, 300);
     });
   });
 })();
